@@ -1,0 +1,583 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DB370F142CBCC921000B1095 /* Instruction1.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB370F132CBCC921000B1095 /* Instruction1.swift */; };
+		DB370F162CBCC95C000B1095 /* Instruction2.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB370F152CBCC95C000B1095 /* Instruction2.swift */; };
+		DB370F182CBCC966000B1095 /* Instruction3.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB370F172CBCC966000B1095 /* Instruction3.swift */; };
+		DB370F1A2CBCC976000B1095 /* Instruction4.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB370F192CBCC976000B1095 /* Instruction4.swift */; };
+		DB9B35842CAF39E6004F2BC7 /* ProjectLibraryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B35832CAF39E6004F2BC7 /* ProjectLibraryApp.swift */; };
+		DB9B35862CAF39E6004F2BC7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B35852CAF39E6004F2BC7 /* ContentView.swift */; };
+		DB9B35882CAF39E8004F2BC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB9B35872CAF39E8004F2BC7 /* Assets.xcassets */; };
+		DB9B358B2CAF39E8004F2BC7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB9B358A2CAF39E8004F2BC7 /* Preview Assets.xcassets */; };
+		DB9B35962CAF3AE2004F2BC7 /* BooksModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B35912CAF3AE2004F2BC7 /* BooksModel.swift */; };
+		DB9B35972CAF3AE2004F2BC7 /* FinesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B35922CAF3AE2004F2BC7 /* FinesModel.swift */; };
+		DB9B35982CAF3AE2004F2BC7 /* LoanModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B35932CAF3AE2004F2BC7 /* LoanModel.swift */; };
+		DB9B35992CAF3AE2004F2BC7 /* StudentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B35942CAF3AE2004F2BC7 /* StudentModel.swift */; };
+		DB9B359D2CAF3B16004F2BC7 /* PostgresClientKit in Frameworks */ = {isa = PBXBuildFile; productRef = DB9B359C2CAF3B16004F2BC7 /* PostgresClientKit */; };
+		DB9B35A62CAF3B50004F2BC7 /* DB_BookManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B359E2CAF3B50004F2BC7 /* DB_BookManager.swift */; };
+		DB9B35A72CAF3B50004F2BC7 /* DB_FinesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B359F2CAF3B50004F2BC7 /* DB_FinesManager.swift */; };
+		DB9B35A82CAF3B50004F2BC7 /* DB_LoanManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B35A02CAF3B50004F2BC7 /* DB_LoanManager.swift */; };
+		DB9B35A92CAF3B50004F2BC7 /* DB_StudentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B35A12CAF3B50004F2BC7 /* DB_StudentManager.swift */; };
+		DB9B35AA2CAF3B50004F2BC7 /* DB_Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B35A32CAF3B50004F2BC7 /* DB_Manager.swift */; };
+		DB9B35AB2CAF3B50004F2BC7 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B35A42CAF3B50004F2BC7 /* UserModel.swift */; };
+		DB9B35BF2CAF3B86004F2BC7 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B35AC2CAF3B86004F2BC7 /* LoadingView.swift */; };
+		DB9B35C02CAF3B86004F2BC7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B35AD2CAF3B86004F2BC7 /* LoginView.swift */; };
+		DB9B35C12CAF3B86004F2BC7 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B35AE2CAF3B86004F2BC7 /* LoginViewModel.swift */; };
+		DB9B35C22CAF3B86004F2BC7 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B35AF2CAF3B86004F2BC7 /* SplashScreenView.swift */; };
+		DB9B35C32CAF3B86004F2BC7 /* AddBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B35B12CAF3B86004F2BC7 /* AddBookView.swift */; };
+		DB9B35C42CAF3B86004F2BC7 /* AddLoanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B35B22CAF3B86004F2BC7 /* AddLoanView.swift */; };
+		DB9B35C52CAF3B86004F2BC7 /* AddStudentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B35B32CAF3B86004F2BC7 /* AddStudentView.swift */; };
+		DB9B35C62CAF3B86004F2BC7 /* BookListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B35B42CAF3B86004F2BC7 /* BookListView.swift */; };
+		DB9B35C72CAF3B86004F2BC7 /* EditBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B35B52CAF3B86004F2BC7 /* EditBookView.swift */; };
+		DB9B35C82CAF3B86004F2BC7 /* EditStudentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B35B62CAF3B86004F2BC7 /* EditStudentView.swift */; };
+		DB9B35C92CAF3B86004F2BC7 /* LoanListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B35B72CAF3B86004F2BC7 /* LoanListView.swift */; };
+		DB9B35CA2CAF3B86004F2BC7 /* StudentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B35B82CAF3B86004F2BC7 /* StudentListView.swift */; };
+		DB9B35CB2CAF3B86004F2BC7 /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B35BA2CAF3B86004F2BC7 /* PopUpView.swift */; };
+		DB9B35CC2CAF3B86004F2BC7 /* ParallaxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B35BC2CAF3B86004F2BC7 /* ParallaxView.swift */; };
+		DB9B35CD2CAF3B86004F2BC7 /* ReportsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B35BD2CAF3B86004F2BC7 /* ReportsView.swift */; };
+		DB9B35D02CAF3C2E004F2BC7 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = DB9B35CF2CAF3C2E004F2BC7 /* SQLite */; };
+		DBA6B2812CB47ED7007AE324 /* FinesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA6B2802CB47ED6007AE324 /* FinesListView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		DB370F132CBCC921000B1095 /* Instruction1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Instruction1.swift; sourceTree = "<group>"; };
+		DB370F152CBCC95C000B1095 /* Instruction2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Instruction2.swift; sourceTree = "<group>"; };
+		DB370F172CBCC966000B1095 /* Instruction3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Instruction3.swift; sourceTree = "<group>"; };
+		DB370F192CBCC976000B1095 /* Instruction4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Instruction4.swift; sourceTree = "<group>"; };
+		DB9B35802CAF39E6004F2BC7 /* ProjectLibrary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectLibrary.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB9B35832CAF39E6004F2BC7 /* ProjectLibraryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectLibraryApp.swift; sourceTree = "<group>"; };
+		DB9B35852CAF39E6004F2BC7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		DB9B35872CAF39E8004F2BC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DB9B358A2CAF39E8004F2BC7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		DB9B35912CAF3AE2004F2BC7 /* BooksModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BooksModel.swift; sourceTree = "<group>"; };
+		DB9B35922CAF3AE2004F2BC7 /* FinesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinesModel.swift; sourceTree = "<group>"; };
+		DB9B35932CAF3AE2004F2BC7 /* LoanModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoanModel.swift; sourceTree = "<group>"; };
+		DB9B35942CAF3AE2004F2BC7 /* StudentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentModel.swift; sourceTree = "<group>"; };
+		DB9B359E2CAF3B50004F2BC7 /* DB_BookManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DB_BookManager.swift; sourceTree = "<group>"; };
+		DB9B359F2CAF3B50004F2BC7 /* DB_FinesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DB_FinesManager.swift; sourceTree = "<group>"; };
+		DB9B35A02CAF3B50004F2BC7 /* DB_LoanManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DB_LoanManager.swift; sourceTree = "<group>"; };
+		DB9B35A12CAF3B50004F2BC7 /* DB_StudentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DB_StudentManager.swift; sourceTree = "<group>"; };
+		DB9B35A32CAF3B50004F2BC7 /* DB_Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DB_Manager.swift; sourceTree = "<group>"; };
+		DB9B35A42CAF3B50004F2BC7 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		DB9B35AC2CAF3B86004F2BC7 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		DB9B35AD2CAF3B86004F2BC7 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		DB9B35AE2CAF3B86004F2BC7 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		DB9B35AF2CAF3B86004F2BC7 /* SplashScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		DB9B35B12CAF3B86004F2BC7 /* AddBookView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookView.swift; sourceTree = "<group>"; };
+		DB9B35B22CAF3B86004F2BC7 /* AddLoanView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLoanView.swift; sourceTree = "<group>"; };
+		DB9B35B32CAF3B86004F2BC7 /* AddStudentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddStudentView.swift; sourceTree = "<group>"; };
+		DB9B35B42CAF3B86004F2BC7 /* BookListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookListView.swift; sourceTree = "<group>"; };
+		DB9B35B52CAF3B86004F2BC7 /* EditBookView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBookView.swift; sourceTree = "<group>"; };
+		DB9B35B62CAF3B86004F2BC7 /* EditStudentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditStudentView.swift; sourceTree = "<group>"; };
+		DB9B35B72CAF3B86004F2BC7 /* LoanListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoanListView.swift; sourceTree = "<group>"; };
+		DB9B35B82CAF3B86004F2BC7 /* StudentListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentListView.swift; sourceTree = "<group>"; };
+		DB9B35BA2CAF3B86004F2BC7 /* PopUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
+		DB9B35BC2CAF3B86004F2BC7 /* ParallaxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParallaxView.swift; sourceTree = "<group>"; };
+		DB9B35BD2CAF3B86004F2BC7 /* ReportsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportsView.swift; sourceTree = "<group>"; };
+		DBA6B2802CB47ED6007AE324 /* FinesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinesListView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DB9B357D2CAF39E6004F2BC7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB9B35D02CAF3C2E004F2BC7 /* SQLite in Frameworks */,
+				DB9B359D2CAF3B16004F2BC7 /* PostgresClientKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DB370F122CBCC8F8000B1095 /* Instructions */ = {
+			isa = PBXGroup;
+			children = (
+				DB370F192CBCC976000B1095 /* Instruction4.swift */,
+				DB370F172CBCC966000B1095 /* Instruction3.swift */,
+				DB370F152CBCC95C000B1095 /* Instruction2.swift */,
+				DB370F132CBCC921000B1095 /* Instruction1.swift */,
+			);
+			path = Instructions;
+			sourceTree = "<group>";
+		};
+		DB9B35772CAF39E6004F2BC7 = {
+			isa = PBXGroup;
+			children = (
+				DB9B35822CAF39E6004F2BC7 /* ProjectLibrary */,
+				DB9B35812CAF39E6004F2BC7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DB9B35812CAF39E6004F2BC7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DB9B35802CAF39E6004F2BC7 /* ProjectLibrary.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DB9B35822CAF39E6004F2BC7 /* ProjectLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				DB9B359A2CAF3AEF004F2BC7 /* Main */,
+				DB9B35BE2CAF3B86004F2BC7 /* Views */,
+				DB9B35A52CAF3B50004F2BC7 /* Controller */,
+				DB9B35952CAF3AE2004F2BC7 /* Models */,
+				DB9B35872CAF39E8004F2BC7 /* Assets.xcassets */,
+				DB9B35892CAF39E8004F2BC7 /* Preview Content */,
+			);
+			path = ProjectLibrary;
+			sourceTree = "<group>";
+		};
+		DB9B35892CAF39E8004F2BC7 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				DB9B358A2CAF39E8004F2BC7 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		DB9B35952CAF3AE2004F2BC7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DB9B35912CAF3AE2004F2BC7 /* BooksModel.swift */,
+				DB9B35922CAF3AE2004F2BC7 /* FinesModel.swift */,
+				DB9B35932CAF3AE2004F2BC7 /* LoanModel.swift */,
+				DB9B35942CAF3AE2004F2BC7 /* StudentModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DB9B359A2CAF3AEF004F2BC7 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				DB9B35852CAF39E6004F2BC7 /* ContentView.swift */,
+				DB9B35832CAF39E6004F2BC7 /* ProjectLibraryApp.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		DB9B35A22CAF3B50004F2BC7 /* Crud */ = {
+			isa = PBXGroup;
+			children = (
+				DB9B35A42CAF3B50004F2BC7 /* UserModel.swift */,
+				DB9B359E2CAF3B50004F2BC7 /* DB_BookManager.swift */,
+				DB9B359F2CAF3B50004F2BC7 /* DB_FinesManager.swift */,
+				DB9B35A02CAF3B50004F2BC7 /* DB_LoanManager.swift */,
+				DB9B35A12CAF3B50004F2BC7 /* DB_StudentManager.swift */,
+			);
+			path = Crud;
+			sourceTree = "<group>";
+		};
+		DB9B35A52CAF3B50004F2BC7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DB9B35A32CAF3B50004F2BC7 /* DB_Manager.swift */,
+				DB9B35A22CAF3B50004F2BC7 /* Crud */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		DB9B35B02CAF3B86004F2BC7 /* LoginsView */ = {
+			isa = PBXGroup;
+			children = (
+				DB9B35AC2CAF3B86004F2BC7 /* LoadingView.swift */,
+				DB9B35AD2CAF3B86004F2BC7 /* LoginView.swift */,
+				DB9B35AE2CAF3B86004F2BC7 /* LoginViewModel.swift */,
+				DB9B35AF2CAF3B86004F2BC7 /* SplashScreenView.swift */,
+			);
+			path = LoginsView;
+			sourceTree = "<group>";
+		};
+		DB9B35B92CAF3B86004F2BC7 /* ModelsView */ = {
+			isa = PBXGroup;
+			children = (
+				DB9B35B12CAF3B86004F2BC7 /* AddBookView.swift */,
+				DB9B35B22CAF3B86004F2BC7 /* AddLoanView.swift */,
+				DB9B35B32CAF3B86004F2BC7 /* AddStudentView.swift */,
+				DB9B35B42CAF3B86004F2BC7 /* BookListView.swift */,
+				DB9B35B52CAF3B86004F2BC7 /* EditBookView.swift */,
+				DB9B35B62CAF3B86004F2BC7 /* EditStudentView.swift */,
+				DB9B35B72CAF3B86004F2BC7 /* LoanListView.swift */,
+				DB9B35B82CAF3B86004F2BC7 /* StudentListView.swift */,
+				DBA6B2802CB47ED6007AE324 /* FinesListView.swift */,
+			);
+			path = ModelsView;
+			sourceTree = "<group>";
+		};
+		DB9B35BB2CAF3B86004F2BC7 /* PopUpsView */ = {
+			isa = PBXGroup;
+			children = (
+				DB9B35BA2CAF3B86004F2BC7 /* PopUpView.swift */,
+				DB370F122CBCC8F8000B1095 /* Instructions */,
+			);
+			path = PopUpsView;
+			sourceTree = "<group>";
+		};
+		DB9B35BE2CAF3B86004F2BC7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DB9B35B02CAF3B86004F2BC7 /* LoginsView */,
+				DB9B35B92CAF3B86004F2BC7 /* ModelsView */,
+				DB9B35BB2CAF3B86004F2BC7 /* PopUpsView */,
+				DB9B35BC2CAF3B86004F2BC7 /* ParallaxView.swift */,
+				DB9B35BD2CAF3B86004F2BC7 /* ReportsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DB9B357F2CAF39E6004F2BC7 /* ProjectLibrary */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB9B358E2CAF39E8004F2BC7 /* Build configuration list for PBXNativeTarget "ProjectLibrary" */;
+			buildPhases = (
+				DB9B357C2CAF39E6004F2BC7 /* Sources */,
+				DB9B357D2CAF39E6004F2BC7 /* Frameworks */,
+				DB9B357E2CAF39E6004F2BC7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ProjectLibrary;
+			packageProductDependencies = (
+				DB9B359C2CAF3B16004F2BC7 /* PostgresClientKit */,
+				DB9B35CF2CAF3C2E004F2BC7 /* SQLite */,
+			);
+			productName = ProjectLibrary;
+			productReference = DB9B35802CAF39E6004F2BC7 /* ProjectLibrary.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DB9B35782CAF39E6004F2BC7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					DB9B357F2CAF39E6004F2BC7 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+				};
+			};
+			buildConfigurationList = DB9B357B2CAF39E6004F2BC7 /* Build configuration list for PBXProject "ProjectLibrary" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DB9B35772CAF39E6004F2BC7;
+			packageReferences = (
+				DB9B359B2CAF3B16004F2BC7 /* XCRemoteSwiftPackageReference "PostgresClientKit" */,
+				DB9B35CE2CAF3C2E004F2BC7 /* XCRemoteSwiftPackageReference "SQLite" */,
+			);
+			productRefGroup = DB9B35812CAF39E6004F2BC7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DB9B357F2CAF39E6004F2BC7 /* ProjectLibrary */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DB9B357E2CAF39E6004F2BC7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB9B358B2CAF39E8004F2BC7 /* Preview Assets.xcassets in Resources */,
+				DB9B35882CAF39E8004F2BC7 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DB9B357C2CAF39E6004F2BC7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB9B35982CAF3AE2004F2BC7 /* LoanModel.swift in Sources */,
+				DB9B35A72CAF3B50004F2BC7 /* DB_FinesManager.swift in Sources */,
+				DB9B35992CAF3AE2004F2BC7 /* StudentModel.swift in Sources */,
+				DB370F1A2CBCC976000B1095 /* Instruction4.swift in Sources */,
+				DB9B35AA2CAF3B50004F2BC7 /* DB_Manager.swift in Sources */,
+				DB9B35962CAF3AE2004F2BC7 /* BooksModel.swift in Sources */,
+				DB370F162CBCC95C000B1095 /* Instruction2.swift in Sources */,
+				DB9B35C92CAF3B86004F2BC7 /* LoanListView.swift in Sources */,
+				DB9B35972CAF3AE2004F2BC7 /* FinesModel.swift in Sources */,
+				DB9B35862CAF39E6004F2BC7 /* ContentView.swift in Sources */,
+				DB9B35C62CAF3B86004F2BC7 /* BookListView.swift in Sources */,
+				DB9B35C22CAF3B86004F2BC7 /* SplashScreenView.swift in Sources */,
+				DBA6B2812CB47ED7007AE324 /* FinesListView.swift in Sources */,
+				DB9B35C42CAF3B86004F2BC7 /* AddLoanView.swift in Sources */,
+				DB9B35842CAF39E6004F2BC7 /* ProjectLibraryApp.swift in Sources */,
+				DB9B35C12CAF3B86004F2BC7 /* LoginViewModel.swift in Sources */,
+				DB9B35CC2CAF3B86004F2BC7 /* ParallaxView.swift in Sources */,
+				DB9B35C82CAF3B86004F2BC7 /* EditStudentView.swift in Sources */,
+				DB9B35CA2CAF3B86004F2BC7 /* StudentListView.swift in Sources */,
+				DB9B35CD2CAF3B86004F2BC7 /* ReportsView.swift in Sources */,
+				DB9B35CB2CAF3B86004F2BC7 /* PopUpView.swift in Sources */,
+				DB9B35C72CAF3B86004F2BC7 /* EditBookView.swift in Sources */,
+				DB9B35C02CAF3B86004F2BC7 /* LoginView.swift in Sources */,
+				DB9B35A92CAF3B50004F2BC7 /* DB_StudentManager.swift in Sources */,
+				DB9B35A82CAF3B50004F2BC7 /* DB_LoanManager.swift in Sources */,
+				DB370F182CBCC966000B1095 /* Instruction3.swift in Sources */,
+				DB370F142CBCC921000B1095 /* Instruction1.swift in Sources */,
+				DB9B35AB2CAF3B50004F2BC7 /* UserModel.swift in Sources */,
+				DB9B35BF2CAF3B86004F2BC7 /* LoadingView.swift in Sources */,
+				DB9B35A62CAF3B50004F2BC7 /* DB_BookManager.swift in Sources */,
+				DB9B35C52CAF3B86004F2BC7 /* AddStudentView.swift in Sources */,
+				DB9B35C32CAF3B86004F2BC7 /* AddBookView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		DB9B358C2CAF39E8004F2BC7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DB9B358D2CAF39E8004F2BC7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DB9B358F2CAF39E8004F2BC7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ProjectLibrary/Preview Content\"";
+				DEVELOPMENT_TEAM = JQ8TWJP7LR;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Proyectos.ProjectLibrary;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DB9B35902CAF39E8004F2BC7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ProjectLibrary/Preview Content\"";
+				DEVELOPMENT_TEAM = JQ8TWJP7LR;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Proyectos.ProjectLibrary;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DB9B357B2CAF39E6004F2BC7 /* Build configuration list for PBXProject "ProjectLibrary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB9B358C2CAF39E8004F2BC7 /* Debug */,
+				DB9B358D2CAF39E8004F2BC7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DB9B358E2CAF39E8004F2BC7 /* Build configuration list for PBXNativeTarget "ProjectLibrary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB9B358F2CAF39E8004F2BC7 /* Debug */,
+				DB9B35902CAF39E8004F2BC7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DB9B359B2CAF3B16004F2BC7 /* XCRemoteSwiftPackageReference "PostgresClientKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/codewinsdotcom/PostgresClientKit";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		DB9B35CE2CAF3C2E004F2BC7 /* XCRemoteSwiftPackageReference "SQLite" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stephencelis/SQLite.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.15.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DB9B359C2CAF3B16004F2BC7 /* PostgresClientKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DB9B359B2CAF3B16004F2BC7 /* XCRemoteSwiftPackageReference "PostgresClientKit" */;
+			productName = PostgresClientKit;
+		};
+		DB9B35CF2CAF3C2E004F2BC7 /* SQLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DB9B35CE2CAF3C2E004F2BC7 /* XCRemoteSwiftPackageReference "SQLite" */;
+			productName = SQLite;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = DB9B35782CAF39E6004F2BC7 /* Project object */;
+}

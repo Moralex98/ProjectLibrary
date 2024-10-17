@@ -1,0 +1,42 @@
+{
+  "originHash" : "4d0fe3d46c90dbbc2802894c24e353929b508a8c707e39047e65ee367bb8b51e",
+  "pins" : [
+    {
+      "identity" : "bluesocket",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Kitura/BlueSocket.git",
+      "state" : {
+        "revision" : "7b23a867008e0027bfd6f4d398d44720707bc8ca",
+        "version" : "2.0.4"
+      }
+    },
+    {
+      "identity" : "bluesslservice",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Kitura/BlueSSLService",
+      "state" : {
+        "revision" : "b27a94d063962dfa1bba9f79814c4ef202cf33a4",
+        "version" : "2.0.2"
+      }
+    },
+    {
+      "identity" : "postgresclientkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/codewinsdotcom/PostgresClientKit",
+      "state" : {
+        "branch" : "master",
+        "revision" : "c2768c8ebe708b1c5937431972c7882b33f4ea49"
+      }
+    },
+    {
+      "identity" : "sqlite.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/stephencelis/SQLite.swift",
+      "state" : {
+        "revision" : "a95fc6df17d108bd99210db5e8a9bac90fe984b8",
+        "version" : "0.15.3"
+      }
+    }
+  ],
+  "version" : 3
+}
