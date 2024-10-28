@@ -53,57 +53,22 @@ class DB_LoanManager {
             t.column(health)
         })
     }
-    
-    // Función para convertir Date a String
-    private func dateToString(_ date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        return formatter.string(from: date)
-    }
-    
-    // Función para convertir String a Date
-    private func stringToDate(_ dateString: String) -> Date? {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        return formatter.date(from: dateString)
-    }
-    public func checkLoanStatus(idStudentValue: Int64) -> (isOverdue: Bool, daysOverdue: Int) {
-        do {
-            let query = loans.filter(idStudent == idStudentValue && health == "Préstamo")
-            if let loan = try db.pluck(query) {
-                let loanDateValue = stringToDate(loan[loanDate])!
-                let daysElapsed = Calendar.current.dateComponents([.day], from: loanDateValue, to: Date()).day ?? 0
-                
-                if daysElapsed > 7 {
-                    let overdueDays = daysElapsed - 7
-                    finesManager.addFines(idLoanValue: loan[idLoan], overdueDays: overdueDays)  // Crear multa con los días de retraso
-                    return (true, overdueDays)
-                }
-            }
-        } catch {
-            print("Error al verificar el préstamo: \(error.localizedDescription)")
-        }
-        return (false, 0)
-    }
-    
-    // Modificar la función para agregar préstamo
-    public func addLoan(isbnValue: Int64, idStudentValue: Int64) {
-        let currentDate = dateToString(Date())
-        let status = "Préstamo"
-            
-        do {
-            try db.run(loans.insert(isbn <- isbnValue, idStudent <- idStudentValue, loanDate <- currentDate, returnDate <- "", health <- status))
-                print("Préstamo agregado exitosamente")
-        } catch {
-                print("Error al agregar préstamo: \(error.localizedDescription)")
-        }
-    }
-    //funcion para devolver la lista de prestaamos
-    public func getLoans() -> [LoanModel] {
-            var loanModels: [LoanModel] = []
-            
+    // Verificar si el estudiante tiene un préstamo pendiente
+        public func hasActiveLoan(idStudentValue: Int64) -> Bool {
             do {
-                for loan in try db.prepare(loans.order(idLoan.desc)) {
+                let query = loans.filter(idStudent == idStudentValue && health == "Préstamo")
+                return try db.pluck(query) != nil
+            } catch {
+                print("Error al verificar préstamo activo: \(error.localizedDescription)")
+                return false
+            }
+        }
+        
+        // Obtener préstamo activo del estudiante
+        public func getActiveLoan(idStudentValue: Int64) -> LoanModel? {
+            do {
+                let query = loans.filter(idStudent == idStudentValue && health == "Préstamo")
+                if let loan = try db.pluck(query) {
                     let loanModel = LoanModel()
                     loanModel.idLoan = loan[idLoan]
                     loanModel.isbn = loan[isbn]
@@ -112,44 +77,48 @@ class DB_LoanManager {
                     loanModel.returnDate = loan[returnDate]
                     loanModel.health = loan[health]
                     
-                    print("id: \(loanModel.idLoan) - isbn: \(loanModel.isbn)")
-                    
-                    loanModels.append(loanModel)
-                }
-                print("libros recuperados: \(loanModels.count)")
-            } catch {
-                print("Error prestamos: \(error.localizedDescription)")
-            }
-            return loanModels
-        }
-        
-        public func getLoan(idLoanValue: Int64) -> LoanModel? {
-            let loanModel = LoanModel()
-            
-            do {
-                let query = loans.filter(idLoan == idLoanValue)
-                if let loan = try db.pluck(query) {
-                    loanModel.idLoan = loan[idLoan]
-                    loanModel.isbn = loan[isbn]
-                    loanModel.idStudent = loan[idStudent]
-                    loanModel.loanDate = loan[loanDate]
-                    loanModel.returnDate = loan[returnDate]
-                    loanModel.health = loan[health]
-                    
-                    print("préstamo encontrado: \(loanModel.idLoan)")
-                    
                     return loanModel
-                } else {
-                    print("No se encontró préstamo: \(loanModel.idLoan)")
-                    return nil
                 }
             } catch {
-                print("Error préstamo: \(error.localizedDescription)")
-                return nil
+                print("Error al obtener préstamo activo: \(error.localizedDescription)")
+            }
+            return nil
+        }
+
+        // Calcular multa según días de atraso
+        public func checkLoanStatus(idStudentValue: Int64, overdueThreshold: Int = 1) -> (isOverdue: Bool, daysOverdue: Int) {
+            do {
+                let query = loans.filter(idStudent == idStudentValue && health == "Préstamo")
+                if let loan = try db.pluck(query) {
+                    let loanDateValue = stringToDate(loan[loanDate])!
+                    let daysElapsed = Calendar.current.dateComponents([.day], from: loanDateValue, to: Date()).day ?? 0
+                    
+                    // Verificar si el préstamo ha pasado del umbral de días
+                    if daysElapsed > overdueThreshold {
+                        let overdueDays = daysElapsed - overdueThreshold
+                        finesManager.addFines(idLoanValue: loan[idLoan], overdueDays: overdueDays)
+                        return (true, overdueDays)
+                    }
+                }
+            } catch {
+                print("Error al verificar el estado del préstamo: \(error.localizedDescription)")
+            }
+            return (false, 0)
+        }
+        // Añadir un préstamo
+        public func addLoan(isbnValue: Int64, idStudentValue: Int64) {
+            let currentDate = dateToString(Date())
+            let status = "Préstamo"
+                
+            do {
+                try db.run(loans.insert(isbn <- isbnValue, idStudent <- idStudentValue, loanDate <- currentDate, returnDate <- "", health <- status))
+                print("Préstamo agregado exitosamente")
+            } catch {
+                print("Error al agregar préstamo: \(error.localizedDescription)")
             }
         }
         
-    // Actualiza el estado del préstamo a "DEVUELTO"
+        // Actualizar estado del préstamo a "Devuelto"
         public func updateLoanStatusToReturned(idLoanValue: Int64) {
             let currentDate = dateToString(Date())
             
@@ -158,7 +127,53 @@ class DB_LoanManager {
                 try db.run(loan.update(returnDate <- currentDate, health <- "Devuelto"))
                 print("Préstamo devuelto exitosamente")
             } catch {
-                print("Error al actualizar el préstamo: \(error.localizedDescription)")
+                print("Error al actualizar el estado del préstamo: \(error.localizedDescription)")
             }
+        }
+    // Función para obtener todos los préstamos
+        public func getLoans() -> [LoanModel] {
+            var loanModels: [LoanModel] = []
+            
+            do {
+                // Recuperar todos los préstamos de la tabla
+                for loan in try db.prepare(loans) {
+                    let loanModel = LoanModel()
+                    loanModel.idLoan = loan[idLoan]
+                    loanModel.isbn = loan[isbn]
+                    loanModel.idStudent = loan[idStudent]
+                    loanModel.loanDate = loan[loanDate]
+                    loanModel.returnDate = loan[returnDate]
+                    loanModel.health = loan[health]
+                    
+                    loanModels.append(loanModel)
+                }
+            } catch {
+                print("Error al obtener préstamos: \(error.localizedDescription)")
+            }
+            
+            return loanModels
+        }
+        public func deleteLoan(idLoanValue: Int64) {
+            do {
+                let loan = loans.filter(self.idLoan == idLoanValue)
+                try db.run(loan.delete())
+                print("Préstamo eliminado exitosamente.")
+            } catch {
+                print("Error al eliminar el préstamo: \(error.localizedDescription)")
+            }
+        }
+        
+        // Función para convertir Date a String
+        private func dateToString(_ date: Date) -> String {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            return formatter.string(from: date)
+        }
+        
+        // Función para convertir String a Date
+        private func stringToDate(_ dateString: String) -> Date? {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            return formatter.date(from: dateString)
         }
 }

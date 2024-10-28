@@ -1,39 +1,31 @@
 //
 //  BookListView.swift
-//  MyProjectLibrary
+//  ProjectLibrary
 //
-//  Created by Freddy Morales on 17/09/24.
+//  Created by Freddy Morales on 21/10/24.
 //
-
 import SwiftUI
 
 struct BookListView: View  {
     @State private var bookModels: [BooksModel] = []
     @State private var isEditing: Bool = false
     @State private var selectedBook: Int64 = 0
-    @State private var searchText: String = "" // Variable para el texto de búsqueda
-    
+        
     var categories: [String] = ["Cuentos de Animales", "Educativo", "Ficción", "Fantasia", "Libros Ilustrados"]
     
     var totalBooks: Int {
         bookModels.count
     }
-    
+        
     var body: some View {
         NavigationView {
-            ZStack {
-                Color.white.ignoresSafeArea()
+            ZStack{
+                Color.white
+                    .ignoresSafeArea()
                 VStack {
                     NavigationLink(destination: EditBookView(isbn: self.$selectedBook), isActive: self.$isEditing) {
                         EmptyView()
                     }
-                    
-                    // Agregar el campo de búsqueda
-                    TextField("Buscar por nombre o ISBN...", text: $searchText)
-                        .padding(10)
-                        .background(Color(.systemGray5))
-                        .cornerRadius(8)
-                        .padding(.horizontal)
                     
                     List {
                         ForEach(categories, id: \.self) { category in
@@ -63,7 +55,7 @@ struct BookListView: View  {
                                         Button(role: .destructive) {
                                             let dbBookManager: DB_BookManager = DB_BookManager()
                                             dbBookManager.deleteBook(isbnValue: book.isbn)
-                                            self.bookModels = dbBookManager.getBooks()
+                                            self.bookModels = dbBookManager.getBooks() // Actualizar lista
                                         } label: {
                                             Label("Eliminar", systemImage: "trash.fill")
                                         }
@@ -82,8 +74,8 @@ struct BookListView: View  {
                             }
                         }
                     }
-                    .listStyle(InsetGroupedListStyle()) // Para un estilo moderno
-                    .background(Color.white) // Fondo blanco para todo el List
+                    .listStyle(InsetGroupedListStyle())
+                    .background(Color.white)
                     .navigationTitle("Lista de Libros")
                     .navigationBarItems(trailing: HStack {
                         Text("Total: \(totalBooks) libros")
@@ -96,24 +88,18 @@ struct BookListView: View  {
                         }
                     })
                 }
-                .onAppear {
-                    self.bookModels = DB_BookManager().getBooks()
-                }
+                .onAppear(perform: {
+                    self.bookModels = DB_BookManager().getBooks() // Obtener todos los libros
+                })
             }
-            .preferredColorScheme(.light) // Fuerza el modo claro en esta vista
+            .preferredColorScheme(.light)
         }
         .navigationViewStyle(StackNavigationViewStyle())
+        .navigationBarBackButtonHidden()
     }
     
-    // Función para filtrar libros por categoría y aplicar la búsqueda
     private func filteredBooks(for category: String) -> [BooksModel] {
-        // Filtrar por categoría y buscar en nombre o ISBN
-        return bookModels.filter {
-            $0.category == category &&
-            (searchText.isEmpty ||
-             $0.nameBook.localizedCaseInsensitiveContains(searchText) ||
-             String($0.isbn).localizedCaseInsensitiveContains(searchText))
-        }
+        return bookModels.filter { $0.category == category }
     }
 }
 
@@ -140,6 +126,7 @@ struct BookDetailView: View {
         }
         .padding()
         .navigationTitle("Detalles del Libro")
+        
     }
 }
 

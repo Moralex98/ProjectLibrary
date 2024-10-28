@@ -79,7 +79,7 @@ struct AddStudentView: View {
                     }
                     
                     Button(action: {
-                        // Validar que los campos no estén vacíos
+                        // Validar que los campos no estén vacíos y tienen los valores correctos
                         hanledStudentAction(isSelected: true)
                     }, label: {
                         Text("Guardar Estudiante")
@@ -123,35 +123,57 @@ struct AddStudentView: View {
         .navigationBarBackButtonHidden()
     }
     
-    // Función para añadir estudiantes en el botón
     func hanledStudentAction(isSelected: Bool) {
+        guard let gradeInt = Int(grade), gradeInt >= 1 && gradeInt <= 6 else {
+            popupMessage = "El grado debe estar entre 1 y 6."
+            popupSuccess = false
+            showPopup = true
+            return
+        }
+        
+        let validGroups = ["A", "B", "C"]
+        if !validGroups.contains(group.uppercased()) {
+            popupMessage = "El grupo debe ser A, B o C."
+            popupSuccess = false
+            showPopup = true
+            return
+        }
+        
         if name.isEmpty || lastName.isEmpty || grade.isEmpty || group.isEmpty || phoneNumber.isEmpty {
-            // Mostrar popup si algún campo está vacío
             popupMessage = "Por favor, complete todos los campos."
             popupSuccess = false
             showPopup = true
-        } else {
-            // Llamar a la función para agregar fila en la base de datos SQLite
-            DB_StudentManager().addStudent(
-                nameValue: self.name,
-                lastNameValue: self.lastName,
-                gradeValue: Int64(self.grade) ?? 0,
-                groupValue: self.group,
-                phoneNumberValue: Int64(self.phoneNumber) ?? 0
-            )
-            
-            // Limpiar los campos de texto
-            self.name = ""
-            self.lastName = ""
-            self.grade = ""
-            self.group = ""
-            self.phoneNumber = ""
-            
-            // Mostrar popup de éxito
-            popupMessage = "Estudiante agregado correctamente."
-            popupSuccess = true
-            showPopup = true
+            return
         }
+        
+        // Validación para el número de teléfono
+        if phoneNumber.count != 10 || Int(phoneNumber) == nil {
+            popupMessage = "El número de teléfono debe tener 10 dígitos."
+            popupSuccess = false
+            showPopup = true
+            return
+        }
+        
+        // Llamar a la función para agregar fila en la base de datos SQLite
+        DB_StudentManager().addStudent(
+            nameValue: self.name,
+            lastNameValue: self.lastName,
+            gradeValue: Int64(self.grade) ?? 0,
+            groupValue: self.group,
+            phoneNumberValue: Int64(self.phoneNumber) ?? 0
+        )
+        
+        // Limpiar los campos de texto
+        self.name = ""
+        self.lastName = ""
+        self.grade = ""
+        self.group = ""
+        self.phoneNumber = ""
+        
+        // Mostrar popup de éxito
+        popupMessage = "Estudiante agregado correctamente."
+        popupSuccess = true
+        showPopup = true
     }
 }
 

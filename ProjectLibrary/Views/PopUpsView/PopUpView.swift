@@ -26,7 +26,7 @@ struct PopUpView: View {
                         ZStack {
                             Image(systemName: "bubble.right.fill")
                                 .resizable()
-                                .foregroundColor(success ? .white : .red)
+                                .foregroundColor(success ? .cyan : .red)
                                 .frame(width: 650, height: 250) // Ajuste del tamaño de la burbuja
                             VStack {
                                 Text(message)

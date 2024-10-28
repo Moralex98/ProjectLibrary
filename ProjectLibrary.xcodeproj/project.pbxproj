@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB241BCF2CCEF1CE00108E83 /* PopUpViewTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB241BCE2CCEF1CE00108E83 /* PopUpViewTwo.swift */; };
 		DB370F142CBCC921000B1095 /* Instruction1.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB370F132CBCC921000B1095 /* Instruction1.swift */; };
 		DB370F162CBCC95C000B1095 /* Instruction2.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB370F152CBCC95C000B1095 /* Instruction2.swift */; };
 		DB370F182CBCC966000B1095 /* Instruction3.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB370F172CBCC966000B1095 /* Instruction3.swift */; };
 		DB370F1A2CBCC976000B1095 /* Instruction4.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB370F192CBCC976000B1095 /* Instruction4.swift */; };
+		DB4E3BFB2CC6F68900688A64 /* BookListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4E3BFA2CC6F68900688A64 /* BookListView.swift */; };
 		DB9B35842CAF39E6004F2BC7 /* ProjectLibraryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B35832CAF39E6004F2BC7 /* ProjectLibraryApp.swift */; };
 		DB9B35862CAF39E6004F2BC7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B35852CAF39E6004F2BC7 /* ContentView.swift */; };
 		DB9B35882CAF39E8004F2BC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB9B35872CAF39E8004F2BC7 /* Assets.xcassets */; };
@@ -33,7 +35,6 @@
 		DB9B35C32CAF3B86004F2BC7 /* AddBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B35B12CAF3B86004F2BC7 /* AddBookView.swift */; };
 		DB9B35C42CAF3B86004F2BC7 /* AddLoanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B35B22CAF3B86004F2BC7 /* AddLoanView.swift */; };
 		DB9B35C52CAF3B86004F2BC7 /* AddStudentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B35B32CAF3B86004F2BC7 /* AddStudentView.swift */; };
-		DB9B35C62CAF3B86004F2BC7 /* BookListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B35B42CAF3B86004F2BC7 /* BookListView.swift */; };
 		DB9B35C72CAF3B86004F2BC7 /* EditBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B35B52CAF3B86004F2BC7 /* EditBookView.swift */; };
 		DB9B35C82CAF3B86004F2BC7 /* EditStudentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B35B62CAF3B86004F2BC7 /* EditStudentView.swift */; };
 		DB9B35C92CAF3B86004F2BC7 /* LoanListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B35B72CAF3B86004F2BC7 /* LoanListView.swift */; };
@@ -46,10 +47,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DB241BCE2CCEF1CE00108E83 /* PopUpViewTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewTwo.swift; sourceTree = "<group>"; };
 		DB370F132CBCC921000B1095 /* Instruction1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Instruction1.swift; sourceTree = "<group>"; };
 		DB370F152CBCC95C000B1095 /* Instruction2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Instruction2.swift; sourceTree = "<group>"; };
 		DB370F172CBCC966000B1095 /* Instruction3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Instruction3.swift; sourceTree = "<group>"; };
 		DB370F192CBCC976000B1095 /* Instruction4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Instruction4.swift; sourceTree = "<group>"; };
+		DB4E3BFA2CC6F68900688A64 /* BookListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListView.swift; sourceTree = "<group>"; };
 		DB9B35802CAF39E6004F2BC7 /* ProjectLibrary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectLibrary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB9B35832CAF39E6004F2BC7 /* ProjectLibraryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectLibraryApp.swift; sourceTree = "<group>"; };
 		DB9B35852CAF39E6004F2BC7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -72,7 +75,6 @@
 		DB9B35B12CAF3B86004F2BC7 /* AddBookView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookView.swift; sourceTree = "<group>"; };
 		DB9B35B22CAF3B86004F2BC7 /* AddLoanView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLoanView.swift; sourceTree = "<group>"; };
 		DB9B35B32CAF3B86004F2BC7 /* AddStudentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddStudentView.swift; sourceTree = "<group>"; };
-		DB9B35B42CAF3B86004F2BC7 /* BookListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookListView.swift; sourceTree = "<group>"; };
 		DB9B35B52CAF3B86004F2BC7 /* EditBookView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBookView.swift; sourceTree = "<group>"; };
 		DB9B35B62CAF3B86004F2BC7 /* EditStudentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditStudentView.swift; sourceTree = "<group>"; };
 		DB9B35B72CAF3B86004F2BC7 /* LoanListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoanListView.swift; sourceTree = "<group>"; };
@@ -202,12 +204,12 @@
 				DB9B35B12CAF3B86004F2BC7 /* AddBookView.swift */,
 				DB9B35B22CAF3B86004F2BC7 /* AddLoanView.swift */,
 				DB9B35B32CAF3B86004F2BC7 /* AddStudentView.swift */,
-				DB9B35B42CAF3B86004F2BC7 /* BookListView.swift */,
 				DB9B35B52CAF3B86004F2BC7 /* EditBookView.swift */,
 				DB9B35B62CAF3B86004F2BC7 /* EditStudentView.swift */,
 				DB9B35B72CAF3B86004F2BC7 /* LoanListView.swift */,
 				DB9B35B82CAF3B86004F2BC7 /* StudentListView.swift */,
 				DBA6B2802CB47ED6007AE324 /* FinesListView.swift */,
+				DB4E3BFA2CC6F68900688A64 /* BookListView.swift */,
 			);
 			path = ModelsView;
 			sourceTree = "<group>";
@@ -215,6 +217,7 @@
 		DB9B35BB2CAF3B86004F2BC7 /* PopUpsView */ = {
 			isa = PBXGroup;
 			children = (
+				DB241BCE2CCEF1CE00108E83 /* PopUpViewTwo.swift */,
 				DB9B35BA2CAF3B86004F2BC7 /* PopUpView.swift */,
 				DB370F122CBCC8F8000B1095 /* Instructions */,
 			);
@@ -321,16 +324,17 @@
 				DB9B35C92CAF3B86004F2BC7 /* LoanListView.swift in Sources */,
 				DB9B35972CAF3AE2004F2BC7 /* FinesModel.swift in Sources */,
 				DB9B35862CAF39E6004F2BC7 /* ContentView.swift in Sources */,
-				DB9B35C62CAF3B86004F2BC7 /* BookListView.swift in Sources */,
 				DB9B35C22CAF3B86004F2BC7 /* SplashScreenView.swift in Sources */,
 				DBA6B2812CB47ED7007AE324 /* FinesListView.swift in Sources */,
 				DB9B35C42CAF3B86004F2BC7 /* AddLoanView.swift in Sources */,
 				DB9B35842CAF39E6004F2BC7 /* ProjectLibraryApp.swift in Sources */,
 				DB9B35C12CAF3B86004F2BC7 /* LoginViewModel.swift in Sources */,
+				DB4E3BFB2CC6F68900688A64 /* BookListView.swift in Sources */,
 				DB9B35CC2CAF3B86004F2BC7 /* ParallaxView.swift in Sources */,
 				DB9B35C82CAF3B86004F2BC7 /* EditStudentView.swift in Sources */,
 				DB9B35CA2CAF3B86004F2BC7 /* StudentListView.swift in Sources */,
 				DB9B35CD2CAF3B86004F2BC7 /* ReportsView.swift in Sources */,
+				DB241BCF2CCEF1CE00108E83 /* PopUpViewTwo.swift in Sources */,
 				DB9B35CB2CAF3B86004F2BC7 /* PopUpView.swift in Sources */,
 				DB9B35C72CAF3B86004F2BC7 /* EditBookView.swift in Sources */,
 				DB9B35C02CAF3B86004F2BC7 /* LoginView.swift in Sources */,

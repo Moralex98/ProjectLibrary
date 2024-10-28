@@ -4,7 +4,6 @@
 //
 //  Created by Freddy Morales on 17/09/24.
 //
-
 import SwiftUI
 
 struct AddBookView: View {
@@ -31,9 +30,8 @@ struct AddBookView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                // Fondo de la vista principal
                 Color.white
-                    .edgesIgnoringSafeArea(.all) // Hace que el fondo cubra toda la pantalla
+                    .edgesIgnoringSafeArea(.all)
                 
                 VStack(alignment: .center, spacing: 20) {
                     Text("Agregar nuevos libros")
@@ -70,30 +68,16 @@ struct AddBookView: View {
                                     self.editorial = newValue.capitalized
                                 }
                             
-                            HStack {
-                                TextField("Ingresa el isbn", text: $isbn)
-                                    .keyboardType(.numberPad)
-                                    .padding(10)
-                                    .background(Color(.systemGray6))
-                                    .cornerRadius(5)
-                                    .disableAutocorrection(true)
-                                
-                                Button(action: {
-                                    withAnimation {
-                                        self.isSelected.toggle()
-                                    }
-                                }) {
-                                    Image(systemName: "camera.viewfinder")
-                                        .resizable()
-                                        .frame(width: 40, height: 40)
-                                        .padding()
-                                        .foregroundColor(.gray)
-                                }
-                            }
+                            TextField("Ingresa el ISBN", text: $isbn)
+                                .keyboardType(.numberPad)
+                                .padding(10)
+                                .background(Color(.systemGray6))
+                                .cornerRadius(5)
+                                .disableAutocorrection(true)
                         }
                         
                         HStack {
-                            TextField("Ingresa el año de la edicion", text: $edition)
+                            TextField("Ingresa el año de la edición", text: $edition)
                                 .keyboardType(.numberPad)
                                 .padding(10)
                                 .background(Color(.systemGray6))
@@ -128,8 +112,7 @@ struct AddBookView: View {
                         }
                         
                         Button(action: {
-                            // Validar que los campos no estén vacíos
-                            handleBookAction(isReturning: true)
+                            handleBookAction()
                         }, label: {
                             Text("Guardar Libro")
                                 .padding()
@@ -159,22 +142,22 @@ struct AddBookView: View {
                     if showPopup {
                         PopUpView(popup: $showPopup, message: $popupMessage, success: $popupSuccess)
                             .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-                            .background(Color.black.opacity(0.3)) // Fondo oscuro para el popup
-                            .transition(.opacity) // Cambiar la animación para evitar movimiento
+                            .background(Color.black.opacity(0.3))
+                            .transition(.opacity)
                             .animation(.easeInOut, value: showPopup)
                             .ignoresSafeArea()
                     }
                 }
             )
-            .ignoresSafeArea(.keyboard, edges: .bottom) // Evita que el teclado empuje la vista
-            .preferredColorScheme(.light) // Fuerza el modo claro en esta vista
+            .ignoresSafeArea(.keyboard, edges: .bottom)
+            .preferredColorScheme(.light)
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .navigationBarBackButtonHidden()
     }
     
-    // Función para validar el botón y manejar la acción
-    func handleBookAction(isReturning: Bool) {
+    // Función para manejar la validación y agregar el libro
+    func handleBookAction() {
         // Validar que los campos no estén vacíos
         if isbn.isEmpty || nameBook.isEmpty || author.isEmpty || editorial.isEmpty || edition.isEmpty || numberBooks.isEmpty {
             // Mostrar popup si algún campo está vacío
@@ -185,7 +168,7 @@ struct AddBookView: View {
             let dbManager = DB_BookManager()
             if dbManager.isISBNRegistered(isbnValue: Int64(self.isbn) ?? 0) {
                 // ISBN ya está registrado, mostrar PopUpView
-                popupMessage = "El libro ya está registrado."
+                popupMessage = "El ISBN ya está registrado."
                 popupSuccess = false
                 showPopup = true
             } else {

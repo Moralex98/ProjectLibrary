@@ -67,6 +67,18 @@ class DB_FinesManager {
         }
         return finesModels
     }
+    // Función para verificar si el estudiante tiene una multa pendiente
+        public func checkForFine(idStudentValue: Int64) -> (hasFine: Bool, fineAmount: Int64, fineId: Int64) {
+            do {
+                let query = finess.filter(idLoan == idStudentValue && status == "PENDIENTE")
+                if let fine = try db.pluck(query) {
+                    return (true, fine[payments], fine[idFine])
+                }
+            } catch {
+                print("Error al verificar multas: \(error.localizedDescription)")
+            }
+            return (false, 0, 0)
+        }
     
     // Método para actualizar el estado de una multa a "PAGADO"
     public func updateFineStatus(idFineValue: Int64) {
@@ -78,6 +90,16 @@ class DB_FinesManager {
             print("Estado de la multa actualizado a PAGADO")
         } catch {
             print("Error al actualizar el estado de la multa: \(error.localizedDescription)")
+        }
+    }
+    
+    public func deleteFine(idFine: Int64) {
+        do {
+            let fine = finess.filter(self.idFine == idFine)
+            try db.run(fine.delete())
+            print("Multa eliminada exitosamente.")
+        } catch {
+            print("Error al eliminar la multa: \(error.localizedDescription)")
         }
     }
 }
