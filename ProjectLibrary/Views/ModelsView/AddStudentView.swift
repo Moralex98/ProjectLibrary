@@ -26,29 +26,44 @@ struct AddStudentView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                // Fondo de la vista principal
-                Color.white
-                    .edgesIgnoringSafeArea(.all) // Hace que el fondo cubra toda la pantalla
+                // Fondo degradado
+                LinearGradient(
+                    gradient: Gradient(colors: [Color.blue.opacity(0.3), Color.purple.opacity(0.3)]),
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                )
+                .ignoresSafeArea()
                 
-                VStack(alignment: .center, spacing: 60) {
+                VStack(alignment: .center, spacing: 40) {
                     Text("Agregar Nuevo Estudiante")
-                        .font(.largeTitle)
-                        .padding(.bottom, 20)
+                        .font(.custom("Avenir Next", size: 36)) // Fuente estilizada para el título
+                        .foregroundColor(.black)
+                        .padding(.bottom, 10)
+                    
+                    // Línea divisora (elige color entre rosa o blanco)
+                //    Divider()
+                       // .frame(width: 600)
+                   //     .background(Color.pink) // Línea divisora en color rosa
+                        //.background(Color.white) // Línea divisora en color blanco (descomenta esta línea si prefieres blanco)
                     
                     VStack(spacing: 20) {
                         TextField("Ingresa tu nombre", text: $name)
-                            .padding(10)
+                            .padding(15) // Ajuste del padding para reducir la altura
+                            .frame(width: 600) // Ancho ajustado a 400
                             .background(Color(.systemGray6))
                             .cornerRadius(5)
+                            .font(.custom("Avenir Next", size: 30)) // Fuente estilizada para el campo de texto
                             .disableAutocorrection(true)
                             .onChange(of: name) { newValue in
                                 self.name = newValue.capitalized
                             }
                         
                         TextField("Ingresa tu apellido", text: $lastName)
-                            .padding(10)
+                            .padding(15) // Ajuste del padding para reducir la altura
+                            .frame(width: 600) // Ancho ajustado a 400
                             .background(Color(.systemGray6))
                             .cornerRadius(5)
+                            .font(.custom("Avenir Next", size: 30)) // Fuente estilizada para el campo de texto
                             .disableAutocorrection(true)
                             .onChange(of: lastName) { newValue in
                                 self.lastName = newValue.capitalized
@@ -56,15 +71,19 @@ struct AddStudentView: View {
                         
                         TextField("Ingresa tu grado", text: $grade)
                             .keyboardType(.numberPad)
-                            .padding(10)
+                            .padding(15) // Ajuste del padding para reducir la altura
+                            .frame(width: 600) // Ancho ajustado a 400
                             .background(Color(.systemGray6))
                             .cornerRadius(5)
+                            .font(.custom("Avenir Next", size: 30)) // Fuente estilizada para el campo de texto
                             .disableAutocorrection(true)
                         
                         TextField("Ingresa tu grupo", text: $group)
-                            .padding(10)
+                            .padding(15) // Ajuste del padding para reducir la altura
+                            .frame(width: 600) // Ancho ajustado a 400
                             .background(Color(.systemGray6))
                             .cornerRadius(5)
+                            .font(.custom("Avenir Next", size: 30)) // Fuente estilizada para el campo de texto
                             .disableAutocorrection(true)
                             .onChange(of: group) { newValue in
                                 self.group = newValue.uppercased()
@@ -72,9 +91,11 @@ struct AddStudentView: View {
                         
                         TextField("Ingresa tu número de teléfono", text: $phoneNumber)
                             .keyboardType(.numberPad)
-                            .padding(10)
+                            .padding(15) // Ajuste del padding para reducir la altura
+                            .frame(width: 600) // Ancho ajustado a 400
                             .background(Color(.systemGray6))
                             .cornerRadius(5)
+                            .font(.custom("Avenir Next", size: 30)) // Fuente estilizada para el campo de texto
                             .disableAutocorrection(true)
                     }
                     
@@ -84,12 +105,12 @@ struct AddStudentView: View {
                     }, label: {
                         Text("Guardar Estudiante")
                             .padding()
-                            .background(Color.green)
+                            .background(Color.purple.opacity(0.8)) // Color púrpura para el botón
                             .foregroundColor(.white)
                             .cornerRadius(10)
+                            .font(.custom("Avenir Next", size: 25)) // Fuente estilizada para el botón
                     })
                     .padding(.top)
-                    .font(.title)
                 }
                 .padding(20)
                 
@@ -99,7 +120,7 @@ struct AddStudentView: View {
                         .frame(width: 30, height: 10)
                         .foregroundColor(.white)
                         .padding()
-                        .background(Color.blue)
+                        .background(Color.blue.opacity(0.8))
                         .cornerRadius(15)
                 }
                 .position(x: UISW * 0.95, y: UISH * 0.04)
@@ -109,15 +130,14 @@ struct AddStudentView: View {
                     if showPopup {
                         PopUpView(popup: $showPopup, message: $popupMessage, success: $popupSuccess)
                             .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-                            .background(Color.black.opacity(0.3)) // Fondo oscuro para el popup
-                            .transition(.opacity) // Cambiar la animación para evitar movimiento
+                            .background(Color.black.opacity(0.3))
+                            .transition(.opacity)
                             .animation(.easeInOut, value: showPopup)
                             .ignoresSafeArea()
                     }
                 }
             )
-            .ignoresSafeArea(.keyboard, edges: .bottom) // Evita que el teclado empuje la vista hacia arriba
-            .preferredColorScheme(.light) // Fuerza el modo claro en esta vista
+            .ignoresSafeArea(.keyboard, edges: .bottom)
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .navigationBarBackButtonHidden()

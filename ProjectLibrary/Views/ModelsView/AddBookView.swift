@@ -25,105 +25,131 @@ struct AddBookView: View {
     var UISW: CGFloat = UIScreen.main.bounds.width
     var UISH: CGFloat = UIScreen.main.bounds.height
     
-    let categories: [String] = ["Cuentos de Animales", "Educativo", "Ficción", "Fantasia", "Libros Ilustrados"]
+    let categories: [String] = ["Educativo", "Ficción", "Fantasia", "Libros Ilustrados"]
     
     var body: some View {
         NavigationView {
             ZStack {
-                Color.white
-                    .edgesIgnoringSafeArea(.all)
+                // Fondo degradado
+                LinearGradient(
+                    gradient: Gradient(colors: [Color.blue.opacity(0.3), Color.purple.opacity(0.3)]),
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                )
+                .ignoresSafeArea()
                 
-                VStack(alignment: .center, spacing: 20) {
-                    Text("Agregar nuevos libros")
-                        .font(.largeTitle.bold())
+                VStack {
+                    Spacer().frame(height: 150) // Añadir espacio adicional arriba del contenido
                     
-                    VStack(spacing: 20) {
-                        HStack {
-                            TextField("Ingresa el nombre del libro", text: $nameBook)
-                                .padding(10)
-                                .background(Color(.systemGray6))
-                                .cornerRadius(5)
-                                .disableAutocorrection(true)
-                                .onChange(of: nameBook) { newValue in
-                                    self.nameBook = newValue.capitalized
-                                }
+                    ScrollView {
+                        VStack(alignment: .center, spacing: 20) {
+                            Text("Agregar nuevos libros")
+                                .font(.custom("Avenir Next", size: 36)) // Fuente estilizada para el título
+                                .foregroundColor(.black)
                             
-                            TextField("Ingresa el autor", text: $author)
-                                .padding(10)
-                                .background(Color(.systemGray6))
-                                .cornerRadius(5)
-                                .disableAutocorrection(true)
-                                .onChange(of: author) { newValue in
-                                    self.author = newValue.capitalized
+                            VStack(spacing: 20) {
+                                HStack {
+                                    TextField("Ingresa el nombre del libro", text: $nameBook)
+                                        .padding(15)
+                                        .frame(width: 500)
+                                        .background(Color(.systemGray6))
+                                        .cornerRadius(5)
+                                        .font(.custom("Avenir Next", size: 30))
+                                        .disableAutocorrection(true)
+                                        .onChange(of: nameBook) { newValue in
+                                            self.nameBook = newValue.capitalized
+                                        }
+                                    
+                                    TextField("Ingresa el autor", text: $author)
+                                        .padding(15)
+                                        .frame(width: 500)
+                                        .background(Color(.systemGray6))
+                                        .cornerRadius(5)
+                                        .font(.custom("Avenir Next", size: 30))
+                                        .disableAutocorrection(true)
+                                        .onChange(of: author) { newValue in
+                                            self.author = newValue.capitalized
+                                        }
                                 }
-                        }
-                        
-                        HStack {
-                            TextField("Ingresa la editorial", text: $editorial)
-                                .padding(10)
-                                .background(Color(.systemGray6))
-                                .cornerRadius(5)
-                                .disableAutocorrection(true)
-                                .onChange(of: editorial) { newValue in
-                                    self.editorial = newValue.capitalized
+                                
+                                HStack {
+                                    TextField("Ingresa la editorial", text: $editorial)
+                                        .padding(15)
+                                        .frame(width: 500)
+                                        .background(Color(.systemGray6))
+                                        .cornerRadius(5)
+                                        .font(.custom("Avenir Next", size: 30))
+                                        .disableAutocorrection(true)
+                                        .onChange(of: editorial) { newValue in
+                                            self.editorial = newValue.capitalized
+                                        }
+                                    
+                                    TextField("Ingresa el ISBN", text: $isbn)
+                                        .keyboardType(.numberPad)
+                                        .padding(15)
+                                        .frame(width: 500)
+                                        .background(Color(.systemGray6))
+                                        .cornerRadius(5)
+                                        .font(.custom("Avenir Next", size: 30))
+                                        .disableAutocorrection(true)
                                 }
-                            
-                            TextField("Ingresa el ISBN", text: $isbn)
-                                .keyboardType(.numberPad)
-                                .padding(10)
-                                .background(Color(.systemGray6))
-                                .cornerRadius(5)
-                                .disableAutocorrection(true)
-                        }
-                        
-                        HStack {
-                            TextField("Ingresa el año de la edición", text: $edition)
-                                .keyboardType(.numberPad)
-                                .padding(10)
-                                .background(Color(.systemGray6))
-                                .cornerRadius(5)
-                                .disableAutocorrection(true)
-                            
-                            TextField("Ingresa la cantidad de libros", text: $numberBooks)
-                                .keyboardType(.numberPad)
-                                .padding(10)
-                                .background(Color(.systemGray6))
-                                .cornerRadius(5)
-                                .disableAutocorrection(true)
-                        }
-                        
-                        VStack(alignment: .center, spacing: 10) {
-                            HStack {
-                                Text("Selecciona una categoría del libro: ")
-                                Text(category)
+                                
+                                HStack {
+                                    TextField("Ingresa el año de la edición", text: $edition)
+                                        .keyboardType(.numberPad)
+                                        .padding(15)
+                                        .frame(width: 500)
+                                        .background(Color(.systemGray6))
+                                        .cornerRadius(5)
+                                        .font(.custom("Avenir Next", size: 30))
+                                        .disableAutocorrection(true)
+                                    
+                                    TextField("Ingresa la cantidad de libros", text: $numberBooks)
+                                        .keyboardType(.numberPad)
+                                        .padding(15)
+                                        .frame(width: 500)
+                                        .background(Color(.systemGray6))
+                                        .cornerRadius(5)
+                                        .font(.custom("Avenir Next", size: 30))
+                                        .disableAutocorrection(true)
+                                }
+                                
+                                VStack(alignment: .center, spacing: 10) {
+                                    HStack {
+                                        Text("Selecciona una categoría del libro: ")
+                                        Text(category)
+                                    }
+                                    .cornerRadius(10)
+                                    .font(.title)
+                                    
+                                    Picker("", selection: $category) {
+                                        ForEach(categories, id: \.self) { category in
+                                            Text(category).tag(category)
+                                                .font(.title.bold())
+                                                .foregroundColor(.blue)
+                                        }
+                                    }
+                                    .pickerStyle(WheelPickerStyle())
+                                    .frame(height: 170)
+                                }
+                                
+                                Button(action: {
+                                    handleBookAction()
+                                }, label: {
+                                    Text("Guardar Libro")
+                                        .padding()
+                                        .background(Color.purple.opacity(0.8)) // Botón en color púrpura
+                                        .foregroundColor(.white)
+                                        .cornerRadius(10)
+                                        .font(.custom("Avenir Next", size: 30))
+                                })
+                                .padding(.top)
                             }
-                            .cornerRadius(10)
-                            .font(.title)
-                            
-                            Picker("", selection: $category) {
-                                ForEach(categories, id: \.self) { category in
-                                    Text(category).tag(category)
-                                        .font(.title.bold())
-                                        .foregroundColor(.blue)
-                                }
-                            }
-                            .pickerStyle(WheelPickerStyle())
-                            .frame(height: 120)
+                            .padding(20)
                         }
-                        
-                        Button(action: {
-                            handleBookAction()
-                        }, label: {
-                            Text("Guardar Libro")
-                                .padding()
-                                .background(Color.green)
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
-                        })
-                        .padding(.top)
-                        .font(.title)
                     }
-                    .padding(20)
+                    
+                    Spacer() // Añade espacio debajo del contenido
                 }
                 
                 NavigationLink(destination: BookListView()) {
@@ -132,7 +158,7 @@ struct AddBookView: View {
                         .frame(width: 30, height: 10)
                         .foregroundColor(.white)
                         .padding()
-                        .background(Color.blue)
+                        .background(Color.blue.opacity(0.8))
                         .cornerRadius(15)
                 }
                 .position(x: UISW * 0.95, y: UISH * 0.04)
@@ -158,21 +184,17 @@ struct AddBookView: View {
     
     // Función para manejar la validación y agregar el libro
     func handleBookAction() {
-        // Validar que los campos no estén vacíos
         if isbn.isEmpty || nameBook.isEmpty || author.isEmpty || editorial.isEmpty || edition.isEmpty || numberBooks.isEmpty {
-            // Mostrar popup si algún campo está vacío
             popupMessage = "Por favor, complete todos los campos."
             popupSuccess = false
             showPopup = true
         } else {
             let dbManager = DB_BookManager()
             if dbManager.isISBNRegistered(isbnValue: Int64(self.isbn) ?? 0) {
-                // ISBN ya está registrado, mostrar PopUpView
                 popupMessage = "El ISBN ya está registrado."
                 popupSuccess = false
                 showPopup = true
             } else {
-                // ISBN no está registrado, agregar libro
                 dbManager.addBook(
                     isbnValue: Int64(self.isbn) ?? 0,
                     nameValue: self.nameBook,
@@ -183,7 +205,6 @@ struct AddBookView: View {
                     numberBookValue: Int64(self.numberBooks) ?? 0
                 )
                 
-                // Limpiar los campos de texto
                 self.isbn = ""
                 self.nameBook = ""
                 self.author = ""
@@ -192,7 +213,6 @@ struct AddBookView: View {
                 self.category = ""
                 self.numberBooks = ""
                 
-                // Mostrar popup de éxito
                 popupMessage = "Libro agregado correctamente."
                 popupSuccess = true
                 showPopup = true

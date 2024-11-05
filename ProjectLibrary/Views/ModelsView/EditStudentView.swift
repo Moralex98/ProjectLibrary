@@ -24,15 +24,27 @@ struct EditStudentView: View {
     
     var body: some View {
         ZStack {
-            Color.white
-                .edgesIgnoringSafeArea(.all) // Hace que el fondo cubra toda la pantalla
+            // Fondo en degradado
+            LinearGradient(
+                gradient: Gradient(colors: [Color.blue.opacity(0.2), Color.purple.opacity(0.2)]),
+                startPoint: .top,
+                endPoint: .bottom
+                    
+            )
+            .edgesIgnoringSafeArea(.all)
             
             VStack(spacing: 20) {
+                Text("Editar Estudiante")
+                    .font(.custom("Avenir-Heavy", size: 36))
+                    .padding(.bottom, 10)
+                
                 // Campo de nombre
                 TextField("Ingresa tu nombre", text: $name)
-                    .padding(10)
+                    .padding(15)
+                    .frame(width: 550)
                     .background(Color(.systemGray6))
-                    .cornerRadius(5)
+                    .cornerRadius(8)
+                    .font(.title) // Aumenta el tamaño de la letra
                     .disableAutocorrection(true)
                     .onChange(of: name) { newValue in
                         self.name = newValue.capitalized
@@ -40,9 +52,11 @@ struct EditStudentView: View {
                 
                 // Campo de apellido
                 TextField("Ingresa tu apellido", text: $lastName)
-                    .padding(10)
+                    .padding(15)
+                    .frame(width: 550)
                     .background(Color(.systemGray6))
-                    .cornerRadius(5)
+                    .cornerRadius(8)
+                    .font(.title) // Aumenta el tamaño de la letra
                     .disableAutocorrection(true)
                     .onChange(of: lastName) { newValue in
                         self.lastName = newValue.capitalized
@@ -51,16 +65,20 @@ struct EditStudentView: View {
                 // Campo de grado
                 TextField("Ingresa tu grado", text: $grade)
                     .keyboardType(.numberPad)
-                    .padding(10)
+                    .padding(15)
+                    .frame(width: 550)
                     .background(Color(.systemGray6))
-                    .cornerRadius(5)
+                    .cornerRadius(8)
+                    .font(.title) // Aumenta el tamaño de la letra
                     .disableAutocorrection(true)
                 
                 // Campo de grupo
                 TextField("Ingresa tu grupo", text: $group)
-                    .padding(10)
+                    .padding(15)
+                    .frame(width: 550)
                     .background(Color(.systemGray6))
-                    .cornerRadius(5)
+                    .cornerRadius(8)
+                    .font(.title) // Aumenta el tamaño de la letra
                     .disableAutocorrection(true)
                     .onChange(of: group) { newValue in
                         self.group = newValue.uppercased()
@@ -69,9 +87,11 @@ struct EditStudentView: View {
                 // Campo de número de teléfono
                 TextField("Ingresa tu número de teléfono", text: $phoneNumber)
                     .keyboardType(.numberPad)
-                    .padding(10)
+                    .padding(15)
+                    .frame(width: 550)
                     .background(Color(.systemGray6))
-                    .cornerRadius(5)
+                    .cornerRadius(8)
+                    .font(.title) // Aumenta el tamaño de la letra
                     .disableAutocorrection(true)
                 
                 // Botón para actualizar estudiante
@@ -91,12 +111,13 @@ struct EditStudentView: View {
                 }, label: {
                     Text("Editar estudiante")
                         .padding()
-                        .background(Color.green)
+                        .frame(width: 250)
+                        .background(Color.purple)
                         .foregroundColor(.white)
                         .cornerRadius(10)
+                        .font(.title2)
                 })
-                .padding(.top)
-                .font(.title)
+                .padding(.top, 20)
             }
             .padding()
             .onAppear {
@@ -113,8 +134,8 @@ struct EditStudentView: View {
                 }
             }
         }
-        .ignoresSafeArea(.keyboard, edges: .bottom) // Evita que el teclado mueva la vista hacia arriba
-        .preferredColorScheme(.light) // Fuerza el modo claro en esta vista
+        .ignoresSafeArea(.keyboard, edges: .bottom)
+        .preferredColorScheme(.light)
     }
 }
 
@@ -127,4 +148,3 @@ struct EditStudentView_Previews: PreviewProvider {
             .previewInterfaceOrientation(.landscapeLeft)
     }
 }
-

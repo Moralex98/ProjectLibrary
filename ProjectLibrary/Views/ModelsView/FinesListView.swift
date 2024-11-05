@@ -10,17 +10,21 @@ import SwiftUI
 struct FinesListView: View {
     @State private var finesModels: [FinesModel] = []
     @State private var totalPaidFines: Int64 = 0 // Total de dinero de multas pagadas
+    @State private var showReportsView = false // Estado para controlar la navegación
     var UISW: CGFloat = UIScreen.main.bounds.width
     var UISH: CGFloat = UIScreen.main.bounds.height
+    
+    let loanManager = DB_LoanManager() // Instancia de DB_LoanManager para acceder a updateOverdueFinesForAllLoans
     
     var body: some View {
         NavigationView {
             ZStack {
-                Color.white
+                // Fondo degradado
+                LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.2), Color.purple.opacity(0.1)]), startPoint: .top, endPoint: .bottom)
                     .ignoresSafeArea()
                 
-                VStack(alignment: .leading) {
-                    VStack {
+                VStack {
+                    VStack (alignment: .leading){
                         List {
                             ForEach(self.finesModels.sorted(by: { $0.idFine < $1.idFine })) { fine in
                                 HStack {
@@ -56,17 +60,24 @@ struct FinesListView: View {
                 .preferredColorScheme(.light)
             }
             .navigationTitle("Lista de Multas")
-            .navigationBarItems(trailing: HStack {
-                Text("Total Pagado: \(totalPaidFines) pesos")
-                    .foregroundColor(.gray)
-                NavigationLink(destination: ReportsView()) { // Puedes cambiar `AddFineView` al destino que prefieras
-                    Image(systemName: "arrowshape.turn.up.right.fill")
-                        .font(.title2.bold())
-                        .frame(width: 30, height: 10)
-                        .foregroundColor(.white)
-                        .padding()
-                        .background(Color.blue)
-                        .cornerRadius(15)
+            .font(.custom("AvenirNext-Bold", size: 28))
+            .navigationBarItems(trailing: HStack(spacing: 15) { //Usamos VStack para manejar el posicionamiento vertical
+                HStack {
+                    Text("Total Pagado: \(totalPaidFines) pesos")
+                        .font(.custom("AvenirNext-Regular", size: 20))
+                        .foregroundColor(.black)
+                    
+                    // Botón que activa la navegación a ReportsView
+                    NavigationLink(destination: ReportsView()) {
+                        Image(systemName: "arrowshape.turn.up.right.fill")
+                            .font(.title2.bold())
+                            .frame(width: 30, height: 30)
+                            .foregroundColor(.white)
+                            .padding()
+                            .background(Color.blue)
+                            .cornerRadius(15)
+                            .offset(y: 10) // Baja el icono para alinearlo mejor
+                    }
                 }
             })
         }
@@ -75,6 +86,10 @@ struct FinesListView: View {
     }
     
     private func loadFines() {
+        // Verificar y actualizar multas para préstamos con atraso antes de cargar la lista de multas
+        loanManager.updateOverdueFinesForAllLoans()
+        
+        // Luego cargar las multas actualizadas
         finesModels = DB_FinesManager().getFines().sorted(by: { $0.idFine < $1.idFine })
         calculateTotalPaidFines() // Calcula el total de multas pagadas
     }
@@ -91,6 +106,7 @@ struct FinesListView: View {
         calculateTotalPaidFines() // Recalcula el total después de eliminar una multa
     }
 }
+
 
 struct FinesListView_Previews: PreviewProvider {
     static var previews: some View {

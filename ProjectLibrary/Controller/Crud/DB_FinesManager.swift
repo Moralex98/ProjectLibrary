@@ -36,7 +36,7 @@ class DB_FinesManager {
         })
     }
     
-    // Modificar el método addFines para aceptar overdueDays y calcular la multa
+    /* Modificar el método addFines para aceptar overdueDays y calcular la multa
         public func addFines(idLoanValue: Int64, overdueDays: Int) {
             let paymentsValue: Int64 = Int64(overdueDays * 5)  // 5 pesos por día de retraso
             let statusValue = "PENDIENTE"
@@ -47,7 +47,21 @@ class DB_FinesManager {
             } catch {
                 print("Error al crear multa: \(error.localizedDescription)")
             }
+        }*/
+    
+    // Modificar el método addFines para aceptar overdueHours y calcular la multa
+    public func addFines(idLoanValue: Int64, overdueHours: Int) {
+        let paymentsValue: Int64 = Int64(overdueHours * 1)  // 1 peso por hora de retraso
+        let statusValue = "PENDIENTE"
+        
+        do {
+            try db.run(finess.insert(idLoan <- idLoanValue, payments <- paymentsValue, status <- statusValue))
+            print("Multa creada exitosamente por \(paymentsValue) pesos.")
+        } catch {
+            print("Error al crear multa: \(error.localizedDescription)")
         }
+    }
+
     
     // Método para obtener todas las multas
     public func getFines() -> [FinesModel] {
@@ -92,6 +106,17 @@ class DB_FinesManager {
             print("Error al actualizar el estado de la multa: \(error.localizedDescription)")
         }
     }
+    // actualiza el monto de la multa segun los dias de retraso
+    public func updateFineAmount(idFineValue: Int64, newAmount: Int64) {
+        do {
+            let fineToUpdate = finess.filter(idFine == idFineValue)
+            try db.run(fineToUpdate.update(payments <- newAmount))
+            print("Monto de la multa actualizado a \(newAmount) pesos.")
+        } catch {
+            print("Error al actualizar el monto de la multa: \(error.localizedDescription)")
+        }
+    }
+
     
     public func deleteFine(idFine: Int64) {
         do {

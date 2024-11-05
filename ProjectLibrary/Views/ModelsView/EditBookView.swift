@@ -19,29 +19,37 @@ struct EditBookView: View {
     
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
-    let categories: [String] = ["Cuentos de Animales", "Educativo", "Ficción", "Fantasia", "Libros Ilustrados"]
+    let categories: [String] = ["Educativo", "Ficción", "Fantasia", "Libros Ilustrados"]
     
     var body: some View {
         ZStack {
-            // Fondo de la vista principal
-            Color.white
-                .edgesIgnoringSafeArea(.all) // Hace que el fondo cubra toda la pantalla
+            // Fondo degradado
+            LinearGradient(
+                gradient: Gradient(colors: [Color.blue.opacity(0.3), Color.purple.opacity(0.3)]),
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            .ignoresSafeArea()
             
-            VStack (spacing: 25) {
+            VStack(spacing: 25) {
                 HStack {
                     TextField("Ingresa el nombre del libro", text: $nameBook)
-                        .padding(10)
+                        .padding(15)
+                        .frame(width: 500) // Ancho ajustado
                         .background(Color(.systemGray6))
                         .cornerRadius(5)
+                        .font(.custom("Avenir Next", size: 30)) // Fuente estilizada
                         .disableAutocorrection(true)
                         .onChange(of: nameBook) { newValue in
                             self.nameBook = newValue.capitalized
                         }
                     
                     TextField("Ingresa el autor", text: $author)
-                        .padding(10)
+                        .padding(15)
+                        .frame(width: 500) // Ancho ajustado
                         .background(Color(.systemGray6))
                         .cornerRadius(5)
+                        .font(.custom("Avenir Next", size: 30)) // Fuente estilizada
                         .disableAutocorrection(true)
                         .onChange(of: author) { newValue in
                             self.author = newValue.capitalized
@@ -49,9 +57,11 @@ struct EditBookView: View {
                 }
                 
                 TextField("Ingresa la editorial", text: $editorial)
-                    .padding(10)
+                    .padding(15)
+                    .frame(width: 500) // Ancho ajustado
                     .background(Color(.systemGray6))
                     .cornerRadius(5)
+                    .font(.custom("Avenir Next", size: 30)) // Fuente estilizada
                     .disableAutocorrection(true)
                     .onChange(of: editorial) { newValue in
                         self.editorial = newValue.capitalized
@@ -60,16 +70,20 @@ struct EditBookView: View {
                 HStack {
                     TextField("Ingresa el año de la edición", text: $edition)
                         .keyboardType(.numberPad)
-                        .padding(10)
+                        .padding(15)
+                        .frame(width: 500) // Ancho ajustado
                         .background(Color(.systemGray6))
                         .cornerRadius(5)
+                        .font(.custom("Avenir Next", size: 30)) // Fuente estilizada
                         .disableAutocorrection(true)
                     
                     TextField("Ingresa la cantidad de libros", text: $numberBooks)
                         .keyboardType(.numberPad)
-                        .padding(10)
+                        .padding(15)
+                        .frame(width: 500) // Ancho ajustado
                         .background(Color(.systemGray6))
                         .cornerRadius(5)
+                        .font(.custom("Avenir Next", size: 30)) // Fuente estilizada
                         .disableAutocorrection(true)
                 }
                 
@@ -78,18 +92,17 @@ struct EditBookView: View {
                         Text("Selecciona una categoría del libro: ")
                         Text(category)
                     }
-                    .cornerRadius(10)
-                    .font(.title.bold())
+                    .font(.custom("Avenir Next", size: 30))
                     
                     Picker("", selection: $category) {
                         ForEach(categories, id: \.self) { category in
                             Text(category).tag(category)
-                                .font(.title.bold())
+                                .font(.title2)
                                 .foregroundColor(.blue)
                         }
                     }
-                    .pickerStyle(WheelPickerStyle())  // Estilo de rueda para el Picker
-                    .frame(height: 100)              // Ajusta la altura del Picker
+                    .pickerStyle(WheelPickerStyle())
+                    .frame(height: 100)
                 }
                 
                 Button(action: {
@@ -108,17 +121,16 @@ struct EditBookView: View {
                 }, label: {
                     Text("Editar Libro")
                         .padding()
-                        .background(Color.green)
+                        .background(Color.purple.opacity(0.8))
                         .foregroundColor(.white)
                         .cornerRadius(10)
+                        .font(.custom("Avenir Next", size: 30))
                 })
                 .padding(.top)
-                .font(.title)
             }
             .padding()
             .onAppear {
                 if let bookModel = DB_BookManager().getBook(isbnValue: self.isbn) {
-                    // Poblar los campos de texto con los datos del libro
                     self.nameBook = bookModel.nameBook
                     self.author = bookModel.author
                     self.editorial = bookModel.editorial
@@ -130,8 +142,8 @@ struct EditBookView: View {
                 }
             }
         }
-        .ignoresSafeArea(.keyboard, edges: .bottom) // Evita que el teclado empuje la vista
-        .preferredColorScheme(.light) // Fuerza el modo claro en esta vista
+        .ignoresSafeArea(.keyboard, edges: .bottom)
+        .preferredColorScheme(.light)
     }
 }
 

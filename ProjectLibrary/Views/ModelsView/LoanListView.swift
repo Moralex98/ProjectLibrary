@@ -16,7 +16,8 @@ struct LoanListView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Color.white
+                // Fondo degradado para la vista principal
+                LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.2), Color.purple.opacity(0.1)]), startPoint: .top, endPoint: .bottom)
                     .ignoresSafeArea()
                 
                 VStack(alignment: .leading) {
@@ -45,7 +46,7 @@ struct LoanListView: View {
                                     Spacer()
                                 }
                                 .padding()
-                                .background(Color(.systemGray6))
+                                .background(Color(.systemGray6).opacity(0.9))
                                 .cornerRadius(10)
                                 .shadow(radius: 5)
                                 .swipeActions(edge: .trailing) {
@@ -59,7 +60,7 @@ struct LoanListView: View {
                             }
                         }
                         .listStyle(InsetGroupedListStyle())
-                        .background(Color.white)
+                        .background(Color.clear)
                     }
                     .padding(20)
                     .onAppear {
@@ -69,17 +70,21 @@ struct LoanListView: View {
                 .preferredColorScheme(.light)
             }
             .navigationTitle("Lista de Préstamos")
-            .navigationBarItems(trailing: HStack {
+            .font(.custom("AvenirNext-Bold", size: 28))
+            .navigationBarItems(trailing: HStack(spacing: 15) {
                 Text("Total de Préstamos: \(totalLoansInProgress)")
                     .foregroundColor(.gray)
-                NavigationLink(destination: ReportsView()) { // Cambia `AddLoanView` al destino que prefieras
+                    .font(.custom("AvenirNext-Regular", size: 22))
+                    .offset(x: -10, y: 20) // Mueve el texto ligeramente para alinearlo con el icono
+                NavigationLink(destination: ReportsView()) {
                     Image(systemName: "arrowshape.turn.up.right.fill")
                         .font(.title2.bold())
-                        .frame(width: 30, height: 10)
+                        .frame(width: 30, height: 30)
                         .foregroundColor(.white)
                         .padding()
                         .background(Color.blue)
                         .cornerRadius(15)
+                        .offset(y: 10) // Baja el icono para alinearlo mejor
                 }
             })
         }
@@ -89,7 +94,7 @@ struct LoanListView: View {
     
     private func loadLoans() {
         loanModels = DB_LoanManager().getLoans().sorted(by: { $0.idLoan < $1.idLoan })
-        calculateTotalLoansInProgress() // Calcula el total de préstamos en progreso
+        calculateTotalLoansInProgress()
     }
     
     private func calculateTotalLoansInProgress() {
@@ -99,7 +104,7 @@ struct LoanListView: View {
     private func deleteLoan(loan: LoanModel) {
         DB_LoanManager().deleteLoan(idLoanValue: loan.idLoan)
         loanModels.removeAll { $0.idLoan == loan.idLoan }
-        calculateTotalLoansInProgress() // Recalcula el total después de eliminar un préstamo
+        calculateTotalLoansInProgress()
     }
 }
 

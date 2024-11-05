@@ -84,7 +84,150 @@ class DB_LoanManager {
             }
             return nil
         }
+        /*calcula si un estudiante tiene un dia de retraso para la multa
+        public func verifyAndCreateFineIfNeeded(idStudentValue: Int64, isbnValue: Int64) {
+            do {
+                let query = loans.filter(idStudent == idStudentValue && isbn == isbnValue && health == "Préstamo")
+                if let loan = try db.pluck(query) {
+                    let loanDateValue = stringToDate(loan[loanDate])!
+                    let daysElapsed = Calendar.current.dateComponents([.day], from: loanDateValue, to: Date()).day ?? 0
+                    
+                    if daysElapsed > 1 {
+                        let overdueDays = daysElapsed - 1
+                        
+                        // Verificar si ya existe una multa para este préstamo
+                        let fineCheck = finesManager.checkForFine(idStudentValue: idStudentValue)
+                        
+                        if fineCheck.hasFine {
+                            // Actualizar multa existente: calcular días adicionales y actualizar monto
+                            let additionalDays = overdueDays - Int(fineCheck.fineAmount / 5) // Días de multa ya calculados
+                            if additionalDays > 0 {
+                                let newFineAmount = fineCheck.fineAmount + Int64(additionalDays * 5)
+                                finesManager.updateFineAmount(idFineValue: fineCheck.fineId, newAmount: newFineAmount)
+                                print("Multa actualizada a \(newFineAmount) pesos por \(overdueDays) días de retraso.")
+                            }
+                        } else {
+                            // Crear una nueva multa si aún no existe
+                            finesManager.addFines(idLoanValue: loan[idLoan], overdueDays: overdueDays)
+                            print("Multa creada por \(overdueDays * 5) pesos por \(overdueDays) días de retraso.")
+                        }
+                    } else {
+                        print("No hay retraso en el préstamo.")
+                    }
+                } else {
+                    print("No se encontró un préstamo activo para esta matrícula e ISBN.")
+                }
+            } catch {
+                print("Error al verificar el estado del préstamo: \(error.localizedDescription)")
+            }
+        }
+       // Nueva función para verificar y crear multas para todos los préstamos atrasados
+       public func updateOverdueFinesForAllLoans() {
+           do {
+               // Filtrar solo los préstamos activos
+               for loan in try db.prepare(loans.filter(health == "Préstamo")) {
+                   let loanDateValue = stringToDate(loan[loanDate])!
+                   let daysElapsed = Calendar.current.dateComponents([.day], from: loanDateValue, to: Date()).day ?? 0
+                   
+                   if daysElapsed > 1 {
+                       let overdueDays = daysElapsed - 1
+                       
+                       // Verificar si ya existe una multa para este préstamo
+                       let fineCheck = finesManager.checkForFine(idStudentValue: loan[idStudent])
+                       
+                       if fineCheck.hasFine {
+                           // Actualizar multa existente si ya hay días adicionales de atraso
+                           let additionalDays = overdueDays - Int(fineCheck.fineAmount / 5)
+                           if additionalDays > 0 {
+                               let newFineAmount = fineCheck.fineAmount + Int64(additionalDays * 5)
+                               finesManager.updateFineAmount(idFineValue: fineCheck.fineId, newAmount: newFineAmount)
+                               print("Multa actualizada a \(newFineAmount) pesos para préstamo con id \(loan[idLoan]) por \(overdueDays) días de retraso.")
+                           }
+                       } else {
+                           // Crear nueva multa si aún no existe
+                           finesManager.addFines(idLoanValue: loan[idLoan], overdueDays: overdueDays)
+                           print("Multa creada por \(overdueDays * 5) pesos para préstamo con id \(loan[idLoan]) por \(overdueDays) días de retraso.")
+                       }
+                   }
+               }
+           } catch {
+               print("Error al actualizar multas para préstamos atrasados: \(error.localizedDescription)")
+           }
+       }*/
+    // Calcula si un estudiante tiene un retraso en horas y crea o actualiza la multa según sea necesario
+    public func verifyAndCreateFineIfNeeded(idStudentValue: Int64, isbnValue: Int64) {
+        do {
+            let query = loans.filter(idStudent == idStudentValue && isbn == isbnValue && health == "Préstamo")
+            if let loan = try db.pluck(query) {
+                let loanDateValue = stringToDate(loan[loanDate])!
+                let hoursElapsed = Calendar.current.dateComponents([.hour], from: loanDateValue, to: Date()).hour ?? 0
+                
+                if hoursElapsed > 1 {
+                    let overdueHours = hoursElapsed - 1
+                    
+                    // Verificar si ya existe una multa para este préstamo
+                    let fineCheck = finesManager.checkForFine(idStudentValue: idStudentValue)
+                    
+                    if fineCheck.hasFine {
+                        // Actualizar multa existente: calcular horas adicionales y actualizar monto
+                        let additionalHours = overdueHours - Int(fineCheck.fineAmount / 1) // Horas de multa ya calculadas
+                        if additionalHours > 0 {
+                            let newFineAmount = fineCheck.fineAmount + Int64(additionalHours * 1) // 1 peso por hora
+                            finesManager.updateFineAmount(idFineValue: fineCheck.fineId, newAmount: newFineAmount)
+                            print("Multa actualizada a \(newFineAmount) pesos por \(overdueHours) horas de retraso.")
+                        }
+                    } else {
+                        // Crear una nueva multa si aún no existe
+                        finesManager.addFines(idLoanValue: loan[idLoan], overdueHours: overdueHours)
+                        print("Multa creada por \(overdueHours * 1) pesos por \(overdueHours) horas de retraso.")
+                    }
+                } else {
+                    print("No hay retraso en el préstamo.")
+                }
+            } else {
+                print("No se encontró un préstamo activo para esta matrícula e ISBN.")
+            }
+        } catch {
+            print("Error al verificar el estado del préstamo: \(error.localizedDescription)")
+        }
+    }
 
+    // Nueva función para verificar y crear multas para todos los préstamos atrasados, ahora calculando por horas
+    public func updateOverdueFinesForAllLoans() {
+        do {
+            // Filtrar solo los préstamos activos
+            for loan in try db.prepare(loans.filter(health == "Préstamo")) {
+                let loanDateValue = stringToDate(loan[loanDate])!
+                let hoursElapsed = Calendar.current.dateComponents([.hour], from: loanDateValue, to: Date()).hour ?? 0
+                
+                if hoursElapsed > 1 {
+                    let overdueHours = hoursElapsed - 1
+                    
+                    // Verificar si ya existe una multa para este préstamo
+                    let fineCheck = finesManager.checkForFine(idStudentValue: loan[idStudent])
+                    
+                    if fineCheck.hasFine {
+                        // Actualizar multa existente si ya hay horas adicionales de atraso
+                        let additionalHours = overdueHours - Int(fineCheck.fineAmount / 1) // 1 peso por hora
+                        if additionalHours > 0 {
+                            let newFineAmount = fineCheck.fineAmount + Int64(additionalHours * 1)
+                            finesManager.updateFineAmount(idFineValue: fineCheck.fineId, newAmount: newFineAmount)
+                            print("Multa actualizada a \(newFineAmount) pesos para préstamo con id \(loan[idLoan]) por \(overdueHours) horas de retraso.")
+                        }
+                    } else {
+                        // Crear nueva multa si aún no existe
+                        finesManager.addFines(idLoanValue: loan[idLoan], overdueHours: overdueHours)
+                        print("Multa creada por \(overdueHours * 1) pesos para préstamo con id \(loan[idLoan]) por \(overdueHours) horas de retraso.")
+                    }
+                }
+            }
+        } catch {
+            print("Error al actualizar multas para préstamos atrasados: \(error.localizedDescription)")
+        }
+    }
+
+    
+    /*
         // Calcular multa según días de atraso
         public func checkLoanStatus(idStudentValue: Int64, overdueThreshold: Int = 1) -> (isOverdue: Bool, daysOverdue: Int) {
             do {
@@ -96,7 +239,7 @@ class DB_LoanManager {
                     // Verificar si el préstamo ha pasado del umbral de días
                     if daysElapsed > overdueThreshold {
                         let overdueDays = daysElapsed - overdueThreshold
-                        finesManager.addFines(idLoanValue: loan[idLoan], overdueDays: overdueDays)
+                        finesManager.addFines(idLoanValue: loan[idLoan], overdueHours: overdueHours)
                         return (true, overdueDays)
                     }
                 }
@@ -105,6 +248,27 @@ class DB_LoanManager {
             }
             return (false, 0)
         }
+     */
+    public func checkLoanStatus(idStudentValue: Int64, overdueThreshold: Int = 1) -> (isOverdue: Bool, hoursOverdue: Int) {
+        do {
+            let query = loans.filter(idStudent == idStudentValue && health == "Préstamo")
+            if let loan = try db.pluck(query) {
+                let loanDateValue = stringToDate(loan[loanDate])!
+                let hoursElapsed = Calendar.current.dateComponents([.hour], from: loanDateValue, to: Date()).hour ?? 0
+                
+                // Verificar si el préstamo ha pasado del umbral de horas
+                if hoursElapsed > overdueThreshold {
+                    let overdueHours = hoursElapsed - overdueThreshold
+                    finesManager.addFines(idLoanValue: loan[idLoan], overdueHours: overdueHours)
+                    return (true, overdueHours)
+                }
+            }
+        } catch {
+            print("Error al verificar el estado del préstamo: \(error.localizedDescription)")
+        }
+        return (false, 0)
+    }
+
         // Añadir un préstamo
         public func addLoan(isbnValue: Int64, idStudentValue: Int64) {
             let currentDate = dateToString(Date())

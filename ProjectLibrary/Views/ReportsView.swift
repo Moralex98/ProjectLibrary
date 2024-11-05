@@ -11,8 +11,13 @@ struct ReportsView: View {
     var body: some View {
         NavigationView { // Envolvemos todo en un NavigationView para habilitar la navegación
             ZStack {
-                Color.white
-                    .ignoresSafeArea()
+                // Fondo degradado
+                LinearGradient(
+                    gradient: Gradient(colors: [Color.blue.opacity(0.2), Color.purple.opacity(0.1)]),
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+                .ignoresSafeArea()
                 
                 GeometryReader { geometry in
                     VStack {
@@ -22,16 +27,16 @@ struct ReportsView: View {
                                 VStack {
                                     Image(systemName: "book.fill")
                                         .font(.system(size: geometry.size.width * 0.07)) // Ajusta el tamaño del icono proporcionalmente al ancho de la pantalla
-                                        .foregroundColor(.black)
+                                        .foregroundColor(.gray)
                                     Text("Libros en préstamo")
                                         .font(.system(size: geometry.size.width * 0.04, weight: .bold)) // Ajusta el tamaño del texto proporcionalmente
-                                        .foregroundColor(.black)
+                                        .foregroundColor(.gray)
                                 }
                                 .padding()
                                 .frame(width: geometry.size.width * 0.3, height: geometry.size.width * 0.3) // Botones ajustados proporcionalmente
-                                .background(Color.gray.opacity(0.2))
+                                .background(Color.purple.opacity(0.1))
                                 .clipShape(Circle())
-                                .overlay(Circle().stroke(Color.gray.opacity(0.5), lineWidth: 5))
+                                .overlay(Circle().stroke(Color.purple.opacity(0.5), lineWidth: 5))
                             }
                             
                             // Botón "Libros con multas"
@@ -39,16 +44,17 @@ struct ReportsView: View {
                                 VStack {
                                     Image(systemName: "creditcard.fill")
                                         .font(.system(size: geometry.size.width * 0.07)) // Ajusta el tamaño del icono proporcionalmente al ancho de la pantalla
-                                        .foregroundColor(.black)
+                                        .foregroundColor(.gray)
                                     Text("Libros con multas")
                                         .font(.system(size: geometry.size.width * 0.04, weight: .bold)) // Ajusta el tamaño del texto proporcionalmente
-                                        .foregroundColor(.black)
+                                        .foregroundColor(.gray)
                                 }
                                 .padding()
                                 .frame(width: geometry.size.width * 0.3, height: geometry.size.width * 0.3) // Botones ajustados proporcionalmente
-                                .background(Color.gray.opacity(0.2))
+                                .background(Color.purple
+                                    .opacity(0.1))
                                 .clipShape(Circle())
-                                .overlay(Circle().stroke(Color.gray.opacity(0.5), lineWidth: 5))
+                                .overlay(Circle().stroke(Color.purple.opacity(0.5), lineWidth: 5))
                             }
                         }
                         .frame(maxWidth: .infinity) // Asegura que el HStack se expanda a todo el ancho
